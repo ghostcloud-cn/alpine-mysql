@@ -43,9 +43,12 @@ EOF
     fi
   fi
 
+  if [ -f "/init.sql" ]; then
+        /usr/bin/mysqld --user=root --bootstrap --verbose=0 < /init.sql
+  fi
+
   /usr/bin/mysqld --user=root --bootstrap --verbose=0 < $tfile
   rm -f $tfile
 fi
-
 
 exec /usr/bin/mysqld --user=root --console
